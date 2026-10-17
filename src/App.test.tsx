@@ -84,3 +84,20 @@ test('a search with no results explains why, and "הצגת כל הסדרות" br
   await user.click(screen.getByRole('button', { name: 'הצגת כל הסדרות' }))
   expect(within(screen.getByRole('region', { name: 'כל הסדרות' })).getAllByRole('listitem')).toHaveLength(6)
 })
+
+test('a saved show is still in "הרשימה שלי" after a refresh, and can be removed', async () => {
+  const user = userEvent.setup()
+  const { unmount } = renderAt('/shows/2')
+
+  await user.click(await screen.findByRole('button', { name: 'שמירה לרשימה שלי' }))
+  expect(screen.getByRole('button', { name: 'הסרה מהרשימה שלי' })).toBeInTheDocument()
+
+  // "רענון": מורידים את האפליקציה ומעלים אותה מחדש. localStorage נשאר.
+  unmount()
+  renderAt('/my-list')
+  expect(screen.getByRole('link', { name: /Person of Interest/ })).toBeInTheDocument()
+  expect(screen.getByRole('link', { name: /הרשימה שלי 1/ })).toBeInTheDocument()
+
+  await user.click(screen.getByRole('button', { name: 'הסרת Person of Interest מהרשימה' }))
+  expect(screen.getByText(/הרשימה שלך עוד ריקה/)).toBeInTheDocument()
+})

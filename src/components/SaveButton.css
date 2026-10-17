@@ -1,0 +1,11 @@
+.save-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  font: inherit;
+  color: var(--text);
+  background: none;
+  border: 1px solid var(--text-dim);
+  cursor: pointer;
+}

@@ -1,6 +1,7 @@
 import { useParams } from 'react-router'
 import { showUrl } from '../api/tvmaze'
 import CastList from '../components/CastList'
+import SaveButton from '../components/SaveButton'
 import StatusMessage from '../components/StatusMessage'
 import { useFetch } from '../hooks/useFetch'
 import type { ShowWithCast } from '../types/tvmaze'
@@ -67,6 +68,8 @@ export default function ShowPage() {
             {htmlToText(show.summary)}
           </p>
         )}
+
+        <SaveButton show={show} />
 
         <CastList cast={show._embedded.cast} />
 

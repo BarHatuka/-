@@ -1,0 +1,28 @@
+.my-list__count {
+  color: var(--text-dim);
+}
+
+.my-list__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: var(--gap);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.my-list__remove {
+  margin-top: 8px;
+  padding: 4px 0;
+  font: inherit;
+  font-size: 0.875rem;
+  color: var(--text-dim);
+  background: none;
+  border: 0;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.my-list__empty {
+  padding-block: 32px;
+}

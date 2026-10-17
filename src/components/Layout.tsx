@@ -1,10 +1,13 @@
 import { Link, NavLink, Outlet } from 'react-router'
+import { useMyList } from '../hooks/useMyList'
 import ScrollToTop from './ScrollToTop'
 import './Layout.css'
 
 // המסגרת של כל העמודים: כותרת עם ניווט למעלה, קרדיט למטה, והעמוד עצמו באמצע.
 // <Outlet /> הוא המקום שבו React Router מצייר את העמוד שמתאים לכתובת.
 export default function Layout() {
+  const myList = useMyList()
+
   return (
     <div className="layout">
       <ScrollToTop />
@@ -17,7 +20,9 @@ export default function Layout() {
           <NavLink to="/" end>
             כל הסדרות
           </NavLink>
-          <NavLink to="/my-list">הרשימה שלי</NavLink>
+          <NavLink to="/my-list">
+            הרשימה שלי <span className="site-header__count">{myList.shows.length}</span>
+          </NavLink>
           <NavLink to="/today">היום בטלוויזיה</NavLink>
         </nav>
       </header>
