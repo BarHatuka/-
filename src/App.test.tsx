@@ -101,3 +101,17 @@ test('a saved show is still in "הרשימה שלי" after a refresh, and can be
   await user.click(screen.getByRole('button', { name: 'הסרת Person of Interest מהרשימה' }))
   expect(screen.getByText(/הרשימה שלך עוד ריקה/)).toBeInTheDocument()
 })
+
+test('"היום בטלוויזיה" lists today\'s shows by hour, and a show opens its page', async () => {
+  const user = userEvent.setup()
+  renderAt('/')
+
+  await user.click(screen.getByRole('link', { name: 'היום בטלוויזיה' }))
+
+  const hours = await screen.findAllByRole('heading', { level: 2 })
+  expect(hours.map((hour) => hour.textContent)).toEqual(['20:00', '22:00'])
+  expect(screen.getByText(/עונה 5, פרק 13/)).toBeInTheDocument()
+
+  await user.click(screen.getByRole('link', { name: 'Person of Interest' }))
+  expect(await screen.findByRole('heading', { level: 1, name: 'Person of Interest' })).toBeInTheDocument()
+})

@@ -1,5 +1,5 @@
 import { vi } from 'vitest'
-import type { ShowDetails, ShowWithCast } from '../types/tvmaze'
+import type { ScheduleEntry, ShowDetails, ShowWithCast } from '../types/tvmaze'
 
 // סדרה לבדיקות, במבנה של TVmaze. כל בדיקה משנה רק את השדות שחשובים לה.
 // Partial<ShowDetails>: אותו טיפוס, אבל כל השדות בו אופציונליים.
@@ -72,7 +72,27 @@ export function fakeTvmaze(answers: Record<string, unknown>) {
   })
 }
 
+// שידור אחד בלוח של היום
+export function makeEntry(overrides: Partial<ScheduleEntry> = {}): ScheduleEntry {
+  return {
+    id: 1,
+    name: 'Pilot',
+    season: 1,
+    number: 1,
+    airdate: '2026-10-17',
+    airtime: '20:00',
+    show: makeShow(),
+    ...overrides,
+  }
+}
+
+export const todaysSchedule = [
+  makeEntry({ id: 101, airtime: '22:00', show: personOfInterest, season: 5, number: 13, name: 'return 0' }),
+  makeEntry({ id: 102, airtime: '20:00', show: testShows[0], season: 6, number: 1, name: 'Loser Like Me' }),
+]
+
 export const defaultAnswers = {
   'https://api.tvmaze.com/shows': testShows,
   'https://api.tvmaze.com/shows/2?embed=cast': personOfInterestWithCast,
+  'https://api.tvmaze.com/schedule?country=US': todaysSchedule,
 }

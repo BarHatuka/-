@@ -9,6 +9,9 @@ export function showUrl(id: string): string {
   return `${BASE_URL}/shows/${id}?embed=cast`
 }
 
+// לוח השידורים של היום בארה"ב: כל הפרקים שמשודרים היום, וכל אחד עם הסדרה שלו.
+export const SCHEDULE_URL = `${BASE_URL}/schedule?country=US`
+
 // שגיאה מיוחדת ל-404, כדי שעמוד הסדרה יציג "לא נמצא" ולא "תקלה ברשת".
 export class NotFoundError extends Error {}
 

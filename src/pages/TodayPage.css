@@ -1,0 +1,44 @@
+.today__intro {
+  color: var(--text-dim);
+}
+
+.today__hour-title {
+  margin: 32px 0 8px;
+  font-size: 1.25rem;
+}
+
+.today__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.today__entry {
+  display: grid;
+  grid-template-columns: 4rem minmax(0, 1fr) auto;
+  gap: 2px 16px;
+  padding-block: 8px;
+}
+
+.today__time {
+  grid-row: span 2;
+  color: var(--text-dim);
+}
+
+.today__show {
+  color: var(--text);
+  text-align: right;
+}
+
+.today__episode {
+  grid-column: 2;
+  font-size: 0.875rem;
+  color: var(--text-dim);
+}
+
+.today__network {
+  grid-column: 3;
+  grid-row: 1;
+  font-size: 0.875rem;
+  color: var(--text-dim);
+}

@@ -41,3 +41,14 @@ export type CastMember = {
 export type ShowWithCast = ShowDetails & {
   _embedded: { cast: CastMember[] }
 }
+
+// שידור אחד בלוח: פרק של סדרה, מתי הוא עולה, ובאיזו רשת
+export type ScheduleEntry = {
+  id: number
+  name: string // שם הפרק
+  season: number
+  number: number | null // null לפרק מיוחד
+  airdate: string // "2026-10-17"
+  airtime: string // "20:00", לפי שעון הרשת. לפעמים ריק
+  show: Show & { network: Channel | null }
+}
