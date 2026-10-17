@@ -1,0 +1,330 @@
+[
+  {
+    "id": 1,
+    "url": "https://www.tvmaze.com/shows/1/under-the-dome",
+    "name": "Under the Dome",
+    "type": "Scripted",
+    "language": "English",
+    "genres": [
+      "Drama",
+      "Science-Fiction",
+      "Thriller"
+    ],
+    "status": "Ended",
+    "runtime": 60,
+    "averageRuntime": 60,
+    "premiered": "2013-06-24",
+    "ended": "2015-09-10",
+    "officialSite": "http://www.cbs.com/shows/under-the-dome/",
+    "schedule": {
+      "time": "22:00",
+      "days": [
+        "Thursday"
+      ]
+    },
+    "rating": {
+      "average": 6.6
+    },
+    "weight": 100,
+    "network": {
+      "name": "CBS",
+      "country": {
+        "name": "United States",
+        "code": "US"
+      }
+    },
+    "webChannel": null,
+    "image": {
+      "medium": "https://static.tvmaze.com/uploads/images/medium_portrait/610/1525272.jpg",
+      "original": "https://static.tvmaze.com/uploads/images/original_untouched/610/1525272.jpg"
+    },
+    "summary": "<p><b>Under the Dome</b> is the story of a small town that is suddenly and inexplicably sealed off from the rest…</p>"
+  },
+  {
+    "id": 2,
+    "url": "https://www.tvmaze.com/shows/2/person-of-interest",
+    "name": "Person of Interest",
+    "type": "Scripted",
+    "language": "English",
+    "genres": [
+      "Action",
+      "Crime",
+      "Science-Fiction"
+    ],
+    "status": "Ended",
+    "runtime": 60,
+    "averageRuntime": 60,
+    "premiered": "2011-09-22",
+    "ended": "2016-06-21",
+    "officialSite": "http://www.cbs.com/shows/person_of_interest/",
+    "schedule": {
+      "time": "22:00",
+      "days": [
+        "Tuesday"
+      ]
+    },
+    "rating": {
+      "average": 8.8
+    },
+    "weight": 100,
+    "network": {
+      "name": "CBS",
+      "country": {
+        "name": "United States",
+        "code": "US"
+      }
+    },
+    "webChannel": null,
+    "image": {
+      "medium": "https://static.tvmaze.com/uploads/images/medium_portrait/163/407679.jpg",
+      "original": "https://static.tvmaze.com/uploads/images/original_untouched/163/407679.jpg"
+    },
+    "summary": "<p>You are being watched. The government has a secret system, a machine that spies on you every hour…</p>"
+  },
+  {
+    "id": 4,
+    "url": "https://www.tvmaze.com/shows/4/arrow",
+    "name": "Arrow",
+    "type": "Scripted",
+    "language": "English",
+    "genres": [
+      "Drama",
+      "Action",
+      "Science-Fiction"
+    ],
+    "status": "Ended",
+    "runtime": 60,
+    "averageRuntime": 60,
+    "premiered": "2012-10-10",
+    "ended": "2020-01-28",
+    "officialSite": null,
+    "schedule": {
+      "time": "21:00",
+      "days": [
+        "Tuesday"
+      ]
+    },
+    "rating": {
+      "average": 7.4
+    },
+    "weight": 99,
+    "network": {
+      "name": "The CW",
+      "country": {
+        "name": "United States",
+        "code": "US"
+      }
+    },
+    "webChannel": null,
+    "image": {
+      "medium": "https://static.tvmaze.com/uploads/images/medium_portrait/143/358967.jpg",
+      "original": "https://static.tvmaze.com/uploads/images/original_untouched/143/358967.jpg"
+    },
+    "summary": "<p>After a violent shipwreck, billionaire playboy Oliver Queen was missing and presumed dead for five years…</p>"
+  },
+  {
+    "id": 5,
+    "url": "https://www.tvmaze.com/shows/5/true-detective",
+    "name": "True Detective",
+    "type": "Scripted",
+    "language": "English",
+    "genres": [
+      "Drama",
+      "Crime",
+      "Thriller"
+    ],
+    "status": "Running",
+    "runtime": 60,
+    "averageRuntime": 63,
+    "premiered": "2014-01-12",
+    "ended": null,
+    "officialSite": "https://www.max.com/shows/true-detective/9a4a3645-74e0-4e4d-9f35-31464b402357",
+    "schedule": {
+      "time": "21:00",
+      "days": [
+        "Sunday"
+      ]
+    },
+    "rating": {
+      "average": 8.1
+    },
+    "weight": 100,
+    "network": {
+      "name": "HBO",
+      "country": {
+        "name": "United States",
+        "code": "US"
+      }
+    },
+    "webChannel": null,
+    "image": {
+      "medium": "https://static.tvmaze.com/uploads/images/medium_portrait/490/1226764.jpg",
+      "original": "https://static.tvmaze.com/uploads/images/original_untouched/490/1226764.jpg"
+    },
+    "summary": "<p>Touch darkness and darkness touches you back. <b>True Detective</b> centers on troubled cops and the investigations…</p>"
+  },
+  {
+    "id": 6,
+    "url": "https://www.tvmaze.com/shows/6/the-100",
+    "name": "The 100",
+    "type": "Scripted",
+    "language": "English",
+    "genres": [
+      "Action",
+      "Adventure",
+      "Science-Fiction"
+    ],
+    "status": "Ended",
+    "runtime": 60,
+    "averageRuntime": 60,
+    "premiered": "2014-03-19",
+    "ended": "2020-09-30",
+    "officialSite": null,
+    "schedule": {
+      "time": "20:00",
+      "days": [
+        "Wednesday"
+      ]
+    },
+    "rating": {
+      "average": 7.7
+    },
+    "weight": 99,
+    "network": {
+      "name": "The CW",
+      "country": {
+        "name": "United States",
+        "code": "US"
+      }
+    },
+    "webChannel": null,
+    "image": {
+      "medium": "https://static.tvmaze.com/uploads/images/medium_portrait/477/1194981.jpg",
+      "original": "https://static.tvmaze.com/uploads/images/original_untouched/477/1194981.jpg"
+    },
+    "summary": "<p>Ninety-seven years ago, nuclear Armageddon decimated planet Earth, destroying civilization. The only survivors…</p>"
+  },
+  {
+    "id": 7,
+    "url": "https://www.tvmaze.com/shows/7/homeland",
+    "name": "Homeland",
+    "type": "Scripted",
+    "language": "English",
+    "genres": [
+      "Drama",
+      "Thriller",
+      "Espionage"
+    ],
+    "status": "Ended",
+    "runtime": 60,
+    "averageRuntime": 60,
+    "premiered": "2011-10-02",
+    "ended": "2020-04-26",
+    "officialSite": "http://www.sho.com/sho/homeland/home",
+    "schedule": {
+      "time": "21:00",
+      "days": [
+        "Sunday"
+      ]
+    },
+    "rating": {
+      "average": 8.2
+    },
+    "weight": 99,
+    "network": {
+      "name": "Paramount+ with Showtime",
+      "country": {
+        "name": "United States",
+        "code": "US"
+      }
+    },
+    "webChannel": null,
+    "image": {
+      "medium": "https://static.tvmaze.com/uploads/images/medium_portrait/498/1245275.jpg",
+      "original": "https://static.tvmaze.com/uploads/images/original_untouched/498/1245275.jpg"
+    },
+    "summary": "<p>The winner of 6 Emmy Awards including Outstanding Drama Series, <b>Homeland</b> is an edge-of-your-seat…</p>"
+  },
+  {
+    "id": 8,
+    "url": "https://www.tvmaze.com/shows/8/glee",
+    "name": "Glee",
+    "type": "Scripted",
+    "language": "English",
+    "genres": [
+      "Drama",
+      "Music",
+      "Romance"
+    ],
+    "status": "Ended",
+    "runtime": 60,
+    "averageRuntime": 60,
+    "premiered": "2009-05-19",
+    "ended": "2015-03-20",
+    "officialSite": "http://www.fox.com/glee",
+    "schedule": {
+      "time": "21:00",
+      "days": [
+        "Friday"
+      ]
+    },
+    "rating": {
+      "average": 6.6
+    },
+    "weight": 99,
+    "network": {
+      "name": "FOX",
+      "country": {
+        "name": "United States",
+        "code": "US"
+      }
+    },
+    "webChannel": null,
+    "image": {
+      "medium": "https://static.tvmaze.com/uploads/images/medium_portrait/0/73.jpg",
+      "original": "https://static.tvmaze.com/uploads/images/original_untouched/0/73.jpg"
+    },
+    "summary": "<p><b>Glee </b>is a musical comedy about a group of ambitious and talented young adults in search of strength…</p>"
+  },
+  {
+    "id": 10,
+    "url": "https://www.tvmaze.com/shows/10/grimm",
+    "name": "Grimm",
+    "type": "Scripted",
+    "language": "English",
+    "genres": [
+      "Drama",
+      "Crime",
+      "Supernatural"
+    ],
+    "status": "Ended",
+    "runtime": 60,
+    "averageRuntime": 60,
+    "premiered": "2011-10-28",
+    "ended": "2017-03-31",
+    "officialSite": "http://www.nbc.com/grimm",
+    "schedule": {
+      "time": "20:00",
+      "days": [
+        "Friday"
+      ]
+    },
+    "rating": {
+      "average": 8.4
+    },
+    "weight": 99,
+    "network": {
+      "name": "NBC",
+      "country": {
+        "name": "United States",
+        "code": "US"
+      }
+    },
+    "webChannel": null,
+    "image": {
+      "medium": "https://static.tvmaze.com/uploads/images/medium_portrait/69/174906.jpg",
+      "original": "https://static.tvmaze.com/uploads/images/original_untouched/69/174906.jpg"
+    },
+    "summary": "<p><b>Grimm </b>is a drama series inspired by the classic Grimm Brothers' Fairy Tales. After Portland homicide…</p>"
+  }
+]

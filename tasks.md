@@ -5,7 +5,7 @@
 >
 > לפני משימה 1: repo חדש מהתבנית, ובתוכו `npm create vite@latest . -- --template react-ts` (ה-commit הראשון).
 
-- [ ] **1 · רשימה מקובץ מקומי** — טיפוס `Show` ב-`src/types/tvmaze.ts`. ‏8 סדרות אמיתיות שהועתקו מתשובת ה-API אל `src/data/sample-shows.json`. הרכיבים `ShowCard` ו-`ShowList`. מתקינים Vitest וכותבים בדיקה ראשונה לפונקציות העזר.
+- [x] **1 · רשימה מקובץ מקומי** — טיפוס `Show` ב-`src/types/tvmaze.ts`. ‏8 סדרות אמיתיות שהועתקו מתשובת ה-API אל `src/data/sample-shows.json`. הרכיבים `ShowCard` ו-`ShowList`. מתקינים Vitest וכותבים בדיקה ראשונה לפונקציות העזר.
       *Done when:* רואים 8 פוסטרים עם שם, שנה ודירוג, בלי שגיאות בקונסול. `npm run build` עובר בלי שגיאות TypeScript, ו-`npm test` ירוק.
 - [ ] **2 · ניתוב וכתובת לכל סדרה** — React Router: רכיב `Layout` עם כותרת, ניווט ו-`Outlet`. הנתיבים `/`, ‏`/shows/:id`, ‏`/my-list` ו-`/today`, ועמוד "לא נמצא" לכל כתובת אחרת. עמוד הסדרה עדיין קורא מהקובץ המקומי.
       *Done when:* לחיצה על Person of Interest משנה את הכתובת ל-`/shows/2` ומציגה את הפרטים שלה. "אחורה" בדפדפן חוזר לקיר. `/xyz` מציג "העמוד הזה לא בתוכנית".
