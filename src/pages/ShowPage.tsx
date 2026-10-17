@@ -1,6 +1,8 @@
-import { useParams } from 'react-router'
+import { Link, useLocation, useNavigate, useParams } from 'react-router'
 import { showUrl } from '../api/tvmaze'
 import CastList from '../components/CastList'
+import Icon from '../components/Icon'
+import Poster from '../components/Poster'
 import SaveButton from '../components/SaveButton'
 import StatusMessage from '../components/StatusMessage'
 import { useFetch } from '../hooks/useFetch'
@@ -27,63 +29,112 @@ export default function ShowPage() {
   }
 
   const show = state.data
-
   const rating = formatRating(show.rating.average)
   const runtime = formatRuntime(show)
 
   return (
     <article className="show-page">
-      {show.image && <img className="show-page__poster" src={show.image.original} alt={`הפוסטר של ${show.name}`} />}
+      <BackLink />
 
-      <div className="show-page__info">
-        <h1 className="show-page__name" dir="ltr">
-          {show.name}
-        </h1>
-        <p>{rating ? `דירוג ${rating} מתוך 10, לפי צופי TVmaze` : 'עוד אין דירוג צופים'}</p>
-        <p>{describeBroadcast(show)}</p>
+      <div className="show-page__layout">
+        <div className="show-page__poster">
+          {show.image ? (
+            <Poster src={show.image.original} alt={`הפוסטר של ${show.name}`} fallbackText={show.name} />
+          ) : (
+            <span className="poster poster--missing" dir="ltr">
+              {show.name}
+            </span>
+          )}
+        </div>
 
-        <dl className="show-page__facts">
-          {show.genres.length > 0 && (
-            <>
-              <dt>ז'אנר</dt>
-              <dd>{formatList(show.genres.map(genreLabel))}</dd>
-            </>
-          )}
-          {runtime && (
-            <>
-              <dt>אורך פרק</dt>
-              <dd>{runtime}</dd>
-            </>
-          )}
-          {show.language && (
-            <>
-              <dt>שפה</dt>
-              <dd>{languageLabel(show.language)}</dd>
-            </>
-          )}
-        </dl>
+        <div className="show-page__info">
+          <h1 className="show-page__name" dir="ltr">
+            {show.name}
+          </h1>
 
-        {show.summary && (
-          <p className="show-page__summary" dir="ltr" lang="en">
-            {htmlToText(show.summary)}
+          <p className="show-page__rating">
+            {rating ? (
+              <>
+                <Icon name="star" filled />
+                <span className="show-page__rating-value">{rating}</span>
+                <span className="show-page__rating-label">מתוך 10, לפי צופי TVmaze</span>
+              </>
+            ) : (
+              <span className="show-page__rating-label">עוד אין דירוג צופים</span>
+            )}
           </p>
-        )}
 
-        <SaveButton show={show} />
+          <p className="show-page__broadcast">{describeBroadcast(show)}</p>
 
-        <CastList cast={show._embedded.cast} />
+          <dl className="show-page__facts">
+            {show.genres.length > 0 && (
+              <>
+                <dt>ז'אנר</dt>
+                <dd>{formatList(show.genres.map(genreLabel))}</dd>
+              </>
+            )}
+            {runtime && (
+              <>
+                <dt>אורך פרק</dt>
+                <dd>{runtime}</dd>
+              </>
+            )}
+            {show.language && (
+              <>
+                <dt>שפה</dt>
+                <dd>{languageLabel(show.language)}</dd>
+              </>
+            )}
+          </dl>
 
-        <p className="show-page__links">
-          <a href={show.url} target="_blank" rel="noreferrer">
-            לעמוד הסדרה ב-TVmaze
-          </a>
-          {show.officialSite && (
-            <a href={show.officialSite} target="_blank" rel="noreferrer">
-              לאתר הרשמי
-            </a>
+          {show.summary && (
+            <p className="show-page__summary" dir="ltr" lang="en">
+              {htmlToText(show.summary)}
+            </p>
           )}
-        </p>
+
+          <div className="show-page__actions">
+            <SaveButton show={show} />
+            <p className="show-page__links">
+              <a href={show.url} target="_blank" rel="noreferrer">
+                לעמוד הסדרה ב-TVmaze
+                <Icon name="external" />
+              </a>
+              {show.officialSite && (
+                <a href={show.officialSite} target="_blank" rel="noreferrer">
+                  לאתר הרשמי
+                  <Icon name="external" />
+                </a>
+              )}
+            </p>
+          </div>
+
+          <CastList cast={show._embedded.cast} />
+        </div>
       </div>
     </article>
+  )
+}
+
+// "חזרה": אם הגענו מתוך האתר — חוזרים צעד אחד בהיסטוריה, כך שהקיר חוזר עם החיפוש והסינון שהיו בו.
+// אם נכנסו ישר לכתובת (key === 'default' = העמוד הראשון בהיסטוריה) — אין לאן לחזור, ולכן קישור לקיר.
+function BackLink() {
+  const location = useLocation()
+  const navigate = useNavigate()
+
+  if (location.key === 'default') {
+    return (
+      <Link to="/" className="show-page__back">
+        <Icon name="back" />
+        לכל הסדרות
+      </Link>
+    )
+  }
+
+  return (
+    <button type="button" className="show-page__back" onClick={() => navigate(-1)}>
+      <Icon name="back" />
+      חזרה
+    </button>
   )
 }

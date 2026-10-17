@@ -10,11 +10,22 @@
   width: 100%;
   padding: 10px 40px;
   font: inherit;
-  color: var(--text);
+  font-size: 1.0625rem;
+  color: var(--ivory);
   background: transparent;
   border: 0;
-  border-bottom: 1px solid var(--text-dim);
+  border-bottom: 1px solid var(--velvet-line);
   border-radius: 0;
+  transition: border-color 160ms ease;
+}
+
+.search-box__input::placeholder {
+  color: var(--ivory-faint);
+}
+
+.search-box__input:focus {
+  outline: none;
+  border-bottom-color: var(--brass);
 }
 
 /* לכרום יש כפתור ניקוי מובנה בשדה חיפוש; יש לנו כפתור משלנו */
@@ -27,7 +38,8 @@
   top: 50%;
   right: 8px;
   display: flex;
-  color: var(--text-dim);
+  font-size: 1.25rem;
+  color: var(--ivory-faint);
   transform: translateY(-50%);
   pointer-events: none;
 }
@@ -38,9 +50,15 @@
   left: 2px;
   display: flex;
   padding: 6px;
-  color: var(--text-dim);
+  font-size: 1.125rem;
+  color: var(--ivory-dim);
   background: none;
   border: 0;
+  border-radius: 50%;
   transform: translateY(-50%);
   cursor: pointer;
+}
+
+.search-box__clear:hover {
+  color: var(--brass);
 }

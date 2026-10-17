@@ -1,19 +1,57 @@
-.status {
-  padding-block: 48px;
+.status__text {
+  margin: 0;
+  font-size: 1.0625rem;
+  color: var(--ivory-dim);
+}
+
+/* ---------- טוענים ---------- */
+.status--loading .status__text {
+  margin-bottom: 28px;
+}
+
+.status__skeleton {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(var(--poster-min), 1fr));
+  gap: var(--wall-gap);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.status__skeleton li {
+  aspect-ratio: 2 / 3;
+  border-radius: var(--radius);
+  background: var(--velvet-raised);
+  animation: skeleton-pulse 1.6s ease-in-out infinite alternate;
+}
+
+.status__skeleton li:nth-child(even) {
+  animation-delay: 0.4s;
+}
+
+@keyframes skeleton-pulse {
+  to {
+    opacity: 0.45;
+  }
+}
+
+/* ---------- שגיאה ---------- */
+.status--error {
+  max-width: 460px;
+  margin: 8vh auto 0;
+  padding: 40px 32px;
+  text-align: center;
+  background: var(--velvet-deep);
+  border: 1px solid var(--velvet-line);
 }
 
 .status__title {
-  margin: 0 0 8px;
-}
-
-.status__text {
-  margin: 0 0 16px;
-  color: var(--text-dim);
+  margin: 0 0 12px;
+  font-size: 2rem;
 }
 
 .status__details {
-  margin: 0 0 16px;
+  margin: 12px 0 24px;
   font-size: 0.875rem;
-  color: var(--text-dim);
-  text-align: right;
+  color: var(--ivory-faint);
 }

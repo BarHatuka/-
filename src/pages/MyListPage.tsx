@@ -8,12 +8,16 @@ export default function MyListPage() {
 
   return (
     <section className="my-list" aria-labelledby="my-list-title">
-      <h1 id="my-list-title">הרשימה שלי</h1>
+      <h1 id="my-list-title" className="page-title">
+        הרשימה שלי
+      </h1>
 
       {myList.shows.length === 0 ? (
         <div className="my-list__empty">
           <p>הרשימה שלך עוד ריקה. מצאתם סדרה שבא לכם לראות? פתחו אותה ולחצו "שמירה לרשימה שלי".</p>
-          <Link to="/">לכל הסדרות</Link>
+          <Link to="/" className="button">
+            לכל הסדרות
+          </Link>
         </div>
       ) : (
         <>

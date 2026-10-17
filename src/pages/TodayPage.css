@@ -1,13 +1,26 @@
 .today__intro {
-  color: var(--text-dim);
+  margin: 0 0 16px;
+  color: var(--ivory-faint);
+}
+
+.today__hour {
+  display: grid;
+  grid-template-columns: 5.5rem minmax(0, 1fr);
+  gap: 16px;
+  padding-block: 20px;
+  border-top: 1px solid var(--velvet-line);
 }
 
 .today__hour-title {
-  margin: 32px 0 8px;
-  font-size: 1.25rem;
+  margin: 0;
+  font-size: 1.75rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--brass);
 }
 
 .today__list {
+  display: grid;
+  gap: 14px;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -15,30 +28,56 @@
 
 .today__entry {
   display: grid;
-  grid-template-columns: 4rem minmax(0, 1fr) auto;
+  grid-template-columns: 3.5rem minmax(0, 1fr) auto;
   gap: 2px 16px;
-  padding-block: 8px;
+  align-items: baseline;
 }
 
 .today__time {
   grid-row: span 2;
-  color: var(--text-dim);
+  font-variant-numeric: tabular-nums;
+  color: var(--ivory-faint);
 }
 
 .today__show {
-  color: var(--text);
-  text-align: right;
+  justify-self: start;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  line-height: 1.2;
+  color: var(--ivory);
+  text-decoration: none;
+}
+
+.today__show:hover {
+  color: var(--brass);
 }
 
 .today__episode {
   grid-column: 2;
   font-size: 0.875rem;
-  color: var(--text-dim);
+  color: var(--ivory-dim);
 }
 
 .today__network {
   grid-column: 3;
   grid-row: 1;
+  justify-self: start;
   font-size: 0.875rem;
-  color: var(--text-dim);
+  color: var(--ivory-faint);
+}
+
+@media (max-width: 599px) {
+  .today__hour {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 10px;
+  }
+
+  .today__entry {
+    grid-template-columns: 3rem minmax(0, 1fr);
+  }
+
+  .today__network {
+    grid-column: 2;
+    grid-row: auto;
+  }
 }

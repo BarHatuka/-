@@ -1,7 +1,6 @@
 import { useMyList } from '../hooks/useMyList'
 import type { Show } from '../types/tvmaze'
 import Icon from './Icon'
-import './SaveButton.css'
 
 type SaveButtonProps = {
   show: Show
@@ -13,7 +12,7 @@ export default function SaveButton({ show }: SaveButtonProps) {
   const saved = myList.isSaved(show.id)
 
   return (
-    <button type="button" className={saved ? 'save-button save-button--saved' : 'save-button'} onClick={() => myList.toggle(show)}>
+    <button type="button" className={saved ? 'button button--primary' : 'button'} onClick={() => myList.toggle(show)}>
       <Icon name="heart" filled={saved} />
       {saved ? 'הסרה מהרשימה שלי' : 'שמירה לרשימה שלי'}
     </button>

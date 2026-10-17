@@ -1,25 +1,110 @@
-/* בסיס זמני: צבעים ומרווחים במקום אחד. העיצוב המלא — במשימה 7. */
+/* ---------- משתני העיצוב: ערב בכורה — קטיפה בורדו, שנהב ופליז ---------- */
 :root {
-  --bg: #1b1015;
-  --surface: #2a1a21;
-  --text: #f3ebe0;
-  --text-dim: #b9aca0;
-  --gap: 24px;
+  --velvet: #2a1219;
+  --velvet-deep: #1d0b11;
+  --velvet-raised: #3a1a23;
+  --velvet-line: #5a2d38;
+  --ivory: #f4eadf;
+  --ivory-dim: #cdb9ae;
+  --ivory-faint: #a08a80;
+  --brass: #d9b26f;
+  --brass-deep: #a9844a;
+
+  --font-display: 'Bellefair', 'Frank Ruhl Libre', Georgia, serif;
+  --font-text: 'Assistant', 'Segoe UI', Arial, sans-serif;
+
+  --radius: 3px;
+  --page-gutter: clamp(16px, 4vw, 48px);
+  --wall-gap: 36px clamp(16px, 2vw, 28px);
+  --poster-min: min(150px, 40vw);
 
   color-scheme: dark;
-  font-family: system-ui, sans-serif;
+  font-family: var(--font-text);
   line-height: 1.5;
-  color: var(--text);
-  background: var(--bg);
+  color: var(--ivory);
+  background: var(--velvet);
+  -webkit-font-smoothing: antialiased;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
 body {
   margin: 0;
+  min-height: 100vh;
+  /* אור זרקור עדין מלמעלה, כמו על במה */
+  background: radial-gradient(120% 60% at 50% -10%, #3b1922 0%, transparent 60%) no-repeat;
+}
+
+h1,
+h2 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: 1.1;
+  text-wrap: balance;
+}
+
+a {
+  color: inherit;
 }
 
 img {
   display: block;
   max-width: 100%;
+}
+
+:focus-visible {
+  outline: 2px solid var(--brass);
+  outline-offset: 3px;
+}
+
+::selection {
+  color: var(--velvet-deep);
+  background: var(--brass);
+}
+
+.icon {
+  flex: none;
+}
+
+/* כותרת של עמוד ("הרשימה שלי", "היום בטלוויזיה") */
+.page-title {
+  margin: 0 0 8px;
+  font-size: clamp(2rem, 1.4rem + 2vw, 2.75rem);
+}
+
+/* כפתור ראשי בצבע פליז ("נסו שוב") וכפתור משני עם מסגרת ("הצגת כל הסדרות") */
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 22px;
+  font: inherit;
+  font-weight: 600;
+  color: var(--brass);
+  text-decoration: none;
+  background: transparent;
+  border: 1px solid var(--brass-deep);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background-color 160ms ease, color 160ms ease;
+}
+
+.button:hover {
+  background: var(--velvet-raised);
+}
+
+.button--primary {
+  color: var(--velvet-deep);
+  background: var(--brass);
+  border-color: var(--brass);
+}
+
+.button--primary:hover {
+  background: var(--ivory);
 }
 
 /* טקסט שרק קורא מסך שומע (למשל התווית של שדה החיפוש) */
@@ -30,4 +115,15 @@ img {
   overflow: hidden;
   clip-path: inset(50%);
   white-space: nowrap;
+}
+
+/* מי שביקש במערכת ההפעלה פחות תנועה — מקבל בלי אנימציות */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

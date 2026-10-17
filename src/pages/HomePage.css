@@ -1,16 +1,25 @@
 .home__toolbar {
   display: grid;
-  gap: 12px;
-  margin-bottom: 24px;
+  gap: 14px;
+  margin-bottom: 32px;
 }
 
 .home__count {
   margin: 0;
   font-size: 0.875rem;
-  color: var(--text-dim);
+  color: var(--ivory-faint);
 }
 
 .home__empty {
-  padding-block: 48px;
+  padding: 72px 16px;
   text-align: center;
+}
+
+.home__empty p {
+  max-width: 30ch;
+  margin: 0 auto 20px;
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  text-wrap: balance;
+  color: var(--ivory);
 }

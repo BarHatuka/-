@@ -11,17 +11,22 @@ export default function Layout() {
   return (
     <div className="layout">
       <ScrollToTop />
+
       <header className="site-header">
-        <Link to="/" className="site-header__title">
-          פרמיירה
-        </Link>
-        <nav aria-label="ניווט ראשי">
+        <div className="site-header__brand">
+          <Link to="/" className="site-header__title">
+            פרמיירה
+          </Link>
+          <p className="site-header__tagline">הסדרה הבאה שלך מתחילה כאן.</p>
+        </div>
+
+        <nav className="site-nav" aria-label="ניווט ראשי">
           {/* NavLink מוסיף class="active" לקישור של העמוד הנוכחי. end: רק "/" בדיוק, לא כל כתובת שמתחילה ב-"/" */}
           <NavLink to="/" end>
             כל הסדרות
           </NavLink>
           <NavLink to="/my-list">
-            הרשימה שלי <span className="site-header__count">{myList.shows.length}</span>
+            הרשימה שלי <span className="site-nav__count">{myList.shows.length}</span>
           </NavLink>
           <NavLink to="/today">היום בטלוויזיה</NavLink>
         </nav>
@@ -32,8 +37,11 @@ export default function Layout() {
       </main>
 
       <footer className="site-footer">
-        המידע והתמונות מ-<a href="https://www.tvmaze.com">TVmaze</a>, ברישיון{' '}
-        <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.
+        <p>
+          המידע והתמונות מ-<a href="https://www.tvmaze.com">TVmaze</a>, ברישיון{' '}
+          <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.
+        </p>
+        <p>פרויקט הגמר של בר במכללת אונו, נבנה ב-React, ב-TypeScript וב-Vite.</p>
       </footer>
     </div>
   )

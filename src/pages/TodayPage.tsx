@@ -19,7 +19,9 @@ export default function TodayPage() {
 
   return (
     <section className="today" aria-labelledby="today-title">
-      <h1 id="today-title">היום בטלוויזיה</h1>
+      <h1 id="today-title" className="page-title">
+        היום בטלוויזיה
+      </h1>
       <p className="today__intro">
         {entries.length > 0 && `${formatAirdate(entries[0].airdate)} · `}
         לוח השידורים בארה"ב. השעות לפי שעון הרשת, ולא לפי שעון ישראל.

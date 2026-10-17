@@ -1,6 +1,11 @@
+.cast h2 {
+  margin: 0 0 14px;
+  font-size: 1.5rem;
+}
+
 .cast__list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
   gap: 12px 24px;
   margin: 0;
   padding: 0;
@@ -9,9 +14,16 @@
 
 .cast__list li {
   display: grid;
+  justify-items: start;
+  padding-inline-start: 12px;
+  border-inline-start: 1px solid var(--velvet-line);
+}
+
+.cast__person {
+  color: var(--ivory);
 }
 
 .cast__character {
   font-size: 0.875rem;
-  color: var(--text-dim);
+  color: var(--ivory-faint);
 }

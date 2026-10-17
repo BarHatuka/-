@@ -1,0 +1,22 @@
+.not-found {
+  display: grid;
+  justify-items: center;
+  gap: 12px;
+  padding-block: 8vh;
+  text-align: center;
+}
+
+/* מסגרת פוסטר ריקה, כמו מקום על הקיר שמחכה לסדרה */
+.not-found__frame {
+  width: 96px;
+  aspect-ratio: 2 / 3;
+  margin-bottom: 12px;
+  border: 1px solid var(--brass-deep);
+  border-radius: var(--radius);
+  box-shadow: inset 0 0 0 6px var(--velvet), inset 0 0 0 7px var(--velvet-line);
+}
+
+.not-found p {
+  margin: 0 0 12px;
+  color: var(--ivory-dim);
+}

@@ -7,17 +7,38 @@
 .genre-filter__option {
   padding: 6px 0;
   font: inherit;
-  color: var(--text-dim);
+  font-size: 0.9375rem;
+  color: var(--ivory-dim);
+  white-space: nowrap;
   background: none;
   border: 0;
+  border-bottom: 1px solid transparent;
   cursor: pointer;
 }
 
+.genre-filter__option:hover {
+  color: var(--ivory);
+}
+
 .genre-filter__option[aria-pressed='true'] {
-  color: var(--text);
-  text-decoration: underline;
+  color: var(--brass);
+  border-bottom-color: var(--brass);
 }
 
 .genre-filter__count {
+  margin-inline-start: 2px;
   font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--ivory-faint);
+}
+
+/* בטלפון: שורה אחת שגוללים לצדדים, במקום שש שורות של ז'אנרים מעל הקיר */
+@media (max-width: 599px) {
+  .genre-filter {
+    flex-wrap: nowrap;
+    margin-inline: calc(var(--page-gutter) * -1);
+    padding-inline: var(--page-gutter);
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
 }

@@ -33,7 +33,7 @@ export default function HomePage() {
     )
   }
 
-  if (state.status === 'loading') return <StatusMessage type="loading" text="טוענים את הסדרות…" />
+  if (state.status === 'loading') return <StatusMessage type="loading" text="טוענים את הסדרות…" posters />
   if (state.status === 'error') {
     return <StatusMessage type="error" title="לא הצלחנו לטעון את הסדרות" details={state.message} onRetry={retry} />
   }
@@ -66,7 +66,7 @@ export default function HomePage() {
         <div className="home__empty">
           <p>{describeNoResults({ query, genre }, wall.length)}</p>
           {/* מחיקת כל הפרמטרים מהכתובת = הקיר המלא */}
-          <button type="button" onClick={() => setSearchParams({}, { replace: true })}>
+          <button type="button" className="button" onClick={() => setSearchParams({}, { replace: true })}>
             הצגת כל הסדרות
           </button>
         </div>
