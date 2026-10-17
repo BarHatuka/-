@@ -1,3 +1,9 @@
+.show-card {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
 .show-card__poster {
   aspect-ratio: 2 / 3;
   overflow: hidden;

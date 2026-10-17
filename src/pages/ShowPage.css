@@ -1,0 +1,40 @@
+.show-page {
+  display: grid;
+  grid-template-columns: minmax(0, 300px) minmax(0, 1fr);
+  gap: 32px;
+  align-items: start;
+}
+
+.show-page__poster {
+  width: 100%;
+}
+
+.show-page__name {
+  margin: 0 0 8px;
+  text-align: right;
+}
+
+.show-page__facts {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 4px 16px;
+}
+
+.show-page__facts dt {
+  color: var(--text-dim);
+}
+
+.show-page__facts dd {
+  margin: 0;
+}
+
+.show-page__links {
+  display: flex;
+  gap: 20px;
+}
+
+@media (max-width: 700px) {
+  .show-page {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

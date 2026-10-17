@@ -1,3 +1,4 @@
+import { Link } from 'react-router'
 import type { Show } from '../types/tvmaze'
 import { formatRating, getYear } from '../utils/format'
 import './ShowCard.css'
@@ -10,7 +11,8 @@ export default function ShowCard({ show }: ShowCardProps) {
   const rating = formatRating(show.rating.average)
 
   return (
-    <article className="show-card">
+    // כל הכרטיס הוא קישור לעמוד של הסדרה. Link משנה את הכתובת בלי לטעון את הדף מחדש.
+    <Link to={`/shows/${show.id}`} className="show-card">
       <div className="show-card__poster">
         {/* alt ריק: השם כתוב ממש מתחת, וקורא מסך לא צריך לשמוע אותו פעמיים */}
         {show.image ? <img src={show.image.medium} alt="" loading="lazy" /> : <span dir="ltr">{show.name}</span>}
@@ -22,6 +24,6 @@ export default function ShowCard({ show }: ShowCardProps) {
         <span>{getYear(show.premiered)}</span>
         {rating && <span>דירוג {rating}</span>}
       </p>
-    </article>
+    </Link>
   )
 }
