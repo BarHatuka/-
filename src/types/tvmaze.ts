@@ -30,3 +30,14 @@ export type ShowDetails = Show & {
   url: string
   officialSite: string | null
 }
+
+// שחקן אחד ברשימת השחקנים: מי השחקן, ואת מי הוא משחק
+export type CastMember = {
+  person: { id: number; name: string }
+  character: { id: number; name: string }
+}
+
+// התשובה של /shows/:id?embed=cast: הסדרה, והשחקנים בתוך _embedded
+export type ShowWithCast = ShowDetails & {
+  _embedded: { cast: CastMember[] }
+}

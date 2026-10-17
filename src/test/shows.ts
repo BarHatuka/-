@@ -1,4 +1,5 @@
-import type { ShowDetails } from '../types/tvmaze'
+import { vi } from 'vitest'
+import type { ShowDetails, ShowWithCast } from '../types/tvmaze'
 
 // סדרה לבדיקות, במבנה של TVmaze. כל בדיקה משנה רק את השדות שחשובים לה.
 // Partial<ShowDetails>: אותו טיפוס, אבל כל השדות בו אופציונליים.
@@ -26,4 +27,52 @@ export function makeShow(overrides: Partial<ShowDetails> = {}): ShowDetails {
     summary: '<p>A test summary.</p>',
     ...overrides,
   }
+}
+
+// הערכים של Person of Interest הועתקו מהתשובה האמיתית של https://api.tvmaze.com/shows/2.
+export const personOfInterest = makeShow({
+  id: 2,
+  name: 'Person of Interest',
+  genres: ['Action', 'Crime', 'Science-Fiction'],
+  premiered: '2011-09-22',
+  ended: '2016-06-21',
+  schedule: { time: '22:00', days: ['Tuesday'] },
+  rating: { average: 8.8 },
+  network: { name: 'CBS' },
+  summary: '<p>You are being watched. The government has a secret system, a machine that spies on you every hour of every day.</p>',
+})
+
+export const personOfInterestWithCast: ShowWithCast = {
+  ...personOfInterest,
+  _embedded: {
+    cast: [
+      { person: { id: 1, name: 'Jim Caviezel' }, character: { id: 1, name: 'John Reese' } },
+      { person: { id: 2, name: 'Michael Emerson' }, character: { id: 2, name: 'Harold Finch' } },
+    ],
+  },
+}
+
+// הסדרות של הקיר בבדיקות, בסדר "מבולגן" בכוונה — כדי לבדוק שהקיר ממיין אותן לפי דירוג.
+export const testShows = [
+  makeShow({ id: 8, name: 'Glee', genres: ['Drama', 'Music', 'Romance'], rating: { average: 6.6 } }),
+  personOfInterest,
+  makeShow({ id: 58, name: 'New Girl', genres: ['Comedy', 'Romance'], rating: { average: 7.3 } }),
+  makeShow({ id: 45, name: 'NCIS: New Orleans', genres: ['Drama', 'Action', 'Crime'], rating: { average: 7.5 } }),
+  makeShow({ id: 66, name: 'The Big Bang Theory', genres: ['Comedy'], rating: { average: 8 } }),
+  makeShow({ id: 40, name: 'Death Note', genres: ['Anime', 'Fantasy', 'Thriller'], rating: { average: null } }),
+]
+
+// fetch מדומה: לכל כתובת יש תשובה מוכנה. כתובת שלא ברשימה מחזירה 404, כמו TVmaze.
+// הבדיקות לא פונות לרשת בכלל.
+export function fakeTvmaze(answers: Record<string, unknown>) {
+  return vi.fn(async (input: string | URL | Request) => {
+    const url = String(input)
+    if (url in answers) return new Response(JSON.stringify(answers[url]), { status: 200 })
+    return new Response('Not Found', { status: 404 })
+  })
+}
+
+export const defaultAnswers = {
+  'https://api.tvmaze.com/shows': testShows,
+  'https://api.tvmaze.com/shows/2?embed=cast': personOfInterestWithCast,
 }

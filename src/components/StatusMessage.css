@@ -1,0 +1,19 @@
+.status {
+  padding-block: 48px;
+}
+
+.status__title {
+  margin: 0 0 8px;
+}
+
+.status__text {
+  margin: 0 0 16px;
+  color: var(--text-dim);
+}
+
+.status__details {
+  margin: 0 0 16px;
+  font-size: 0.875rem;
+  color: var(--text-dim);
+  text-align: right;
+}

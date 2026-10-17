@@ -1,6 +1,5 @@
 import { describe, expect, test } from 'vitest'
-import sampleShows from '../data/sample-shows.json'
-import { makeShow } from '../test/shows'
+import { makeShow, personOfInterest } from '../test/shows'
 import { describeBroadcast, formatList, formatRating, formatRuntime, getYear, htmlToText } from './format'
 
 describe('getYear', () => {
@@ -26,7 +25,6 @@ describe('formatRating', () => {
 
 describe('describeBroadcast', () => {
   test('a show that ended: years, channel and time slot (Person of Interest, from the real data)', () => {
-    const personOfInterest = sampleShows.find((show) => show.id === 2)!
     expect(describeBroadcast(personOfInterest)).toBe(
       'שודרה בין 2011 ל-2016 ב-CBS, בימי שלישי בשעה 22:00 (לפי שעון הרשת).',
     )

@@ -1,4 +1,5 @@
 import { Link, NavLink, Outlet } from 'react-router'
+import ScrollToTop from './ScrollToTop'
 import './Layout.css'
 
 // המסגרת של כל העמודים: כותרת עם ניווט למעלה, קרדיט למטה, והעמוד עצמו באמצע.
@@ -6,6 +7,7 @@ import './Layout.css'
 export default function Layout() {
   return (
     <div className="layout">
+      <ScrollToTop />
       <header className="site-header">
         <Link to="/" className="site-header__title">
           פרמיירה

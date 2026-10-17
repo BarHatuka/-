@@ -1,0 +1,17 @@
+.cast__list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cast__list li {
+  display: grid;
+}
+
+.cast__character {
+  font-size: 0.875rem;
+  color: var(--text-dim);
+}

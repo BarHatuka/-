@@ -1,19 +1,31 @@
 import { useParams } from 'react-router'
-import sampleShows from '../data/sample-shows.json'
-import type { ShowDetails } from '../types/tvmaze'
+import { showUrl } from '../api/tvmaze'
+import CastList from '../components/CastList'
+import StatusMessage from '../components/StatusMessage'
+import { useFetch } from '../hooks/useFetch'
+import type { ShowWithCast } from '../types/tvmaze'
 import { describeBroadcast, formatList, formatRating, formatRuntime, htmlToText } from '../utils/format'
 import { genreLabel, languageLabel } from '../utils/labels'
 import NotFoundPage from './NotFoundPage'
 import './ShowPage.css'
 
-const shows: ShowDetails[] = sampleShows
-
 export default function ShowPage() {
-  // /shows/2 → id = "2". מה שמגיע מהכתובת הוא תמיד מחרוזת, ולכן Number(...)
-  const { id } = useParams()
-  const show = shows.find((item) => item.id === Number(id))
+  // /shows/2 → id = "2". מה שמגיע מהכתובת הוא תמיד מחרוזת.
+  const { id = '' } = useParams()
+  // רק ספרות. על /shows/abc לא שולחים בקשה בכלל.
+  const isValidId = /^\d+$/.test(id)
 
-  if (!show) return <NotFoundPage />
+  // העמוד טוען את הסדרה בעצמו, לפי המזהה בכתובת — ולכן הוא עובד גם בכניסה ישירה ואחרי רענון.
+  const { state, retry } = useFetch<ShowWithCast>(isValidId ? showUrl(id) : null)
+
+  if (!isValidId) return <NotFoundPage />
+  if (state.status === 'loading') return <StatusMessage type="loading" text="טוענים את הסדרה…" />
+  if (state.status === 'error') {
+    if (state.notFound) return <NotFoundPage />
+    return <StatusMessage type="error" title="לא הצלחנו לטעון את הסדרה" details={state.message} onRetry={retry} />
+  }
+
+  const show = state.data
 
   const rating = formatRating(show.rating.average)
   const runtime = formatRuntime(show)
@@ -55,6 +67,8 @@ export default function ShowPage() {
             {htmlToText(show.summary)}
           </p>
         )}
+
+        <CastList cast={show._embedded.cast} />
 
         <p className="show-page__links">
           <a href={show.url} target="_blank" rel="noreferrer">

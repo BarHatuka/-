@@ -1,15 +1,21 @@
+import { SHOWS_URL } from '../api/tvmaze'
 import ShowList from '../components/ShowList'
-import sampleShows from '../data/sample-shows.json'
+import StatusMessage from '../components/StatusMessage'
+import { useFetch } from '../hooks/useFetch'
 import type { Show } from '../types/tvmaze'
-
-// בשלב הזה הסדרות מגיעות מקובץ מקומי: 8 סדרות שהועתקו מתשובה אמיתית של TVmaze.
-// TypeScript בודק כאן שהקובץ מתאים לטיפוס Show. במשימה 3 הן יגיעו מה-API עצמו.
-const shows: Show[] = sampleShows
+import { wallOrder } from '../utils/shows'
 
 export default function HomePage() {
+  const { state, retry } = useFetch<Show[]>(SHOWS_URL)
+
+  if (state.status === 'loading') return <StatusMessage type="loading" text="טוענים את הסדרות…" />
+  if (state.status === 'error') {
+    return <StatusMessage type="error" title="לא הצלחנו לטעון את הסדרות" details={state.message} onRetry={retry} />
+  }
+
   return (
     <section aria-label="כל הסדרות">
-      <ShowList shows={shows} />
+      <ShowList shows={wallOrder(state.data)} />
     </section>
   )
 }

@@ -1,6 +1,15 @@
 import '@testing-library/jest-dom/vitest'
 import { cleanup } from '@testing-library/react'
-import { afterEach } from 'vitest'
+import { afterEach, vi } from 'vitest'
+import { clearFetchCache } from '../hooks/useFetch'
 
-// מנקים את המסך אחרי כל בדיקה, כדי שבדיקה אחת לא תראה את מה שהקודמת ציירה.
-afterEach(() => cleanup())
+// ב-jsdom אין גלילה אמיתית. ScrollToTop קורא ל-scrollTo, אז מחליפים אותו בפונקציה ריקה.
+window.scrollTo = vi.fn()
+
+// אחרי כל בדיקה: מנקים את המסך, את הזיכרון של useFetch ואת ה-fetch המדומה,
+// כדי שבדיקה אחת לא תראה את מה שהקודמת השאירה.
+afterEach(() => {
+  cleanup()
+  clearFetchCache()
+  vi.unstubAllGlobals()
+})
