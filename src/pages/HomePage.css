@@ -1,0 +1,16 @@
+.home__toolbar {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.home__count {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--text-dim);
+}
+
+.home__empty {
+  padding-block: 48px;
+  text-align: center;
+}

@@ -1,0 +1,46 @@
+.search-box {
+  position: relative;
+  flex: 1 1 280px;
+  max-width: 440px;
+}
+
+/* השדה משנה כיוון לפי הטקסט (dir="auto"): עברית מימין, אנגלית משמאל.
+   לכן הריפוד "פיזי" (left/right) ולא לפי כיוון הקריאה — אחרת האייקונים מכסים אותיות. */
+.search-box__input {
+  width: 100%;
+  padding: 10px 40px;
+  font: inherit;
+  color: var(--text);
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--text-dim);
+  border-radius: 0;
+}
+
+/* לכרום יש כפתור ניקוי מובנה בשדה חיפוש; יש לנו כפתור משלנו */
+.search-box__input::-webkit-search-cancel-button {
+  appearance: none;
+}
+
+.search-box__icon {
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  display: flex;
+  color: var(--text-dim);
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.search-box__clear {
+  position: absolute;
+  top: 50%;
+  left: 2px;
+  display: flex;
+  padding: 6px;
+  color: var(--text-dim);
+  background: none;
+  border: 0;
+  transform: translateY(-50%);
+  cursor: pointer;
+}

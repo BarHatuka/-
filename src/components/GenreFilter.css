@@ -1,0 +1,23 @@
+.genre-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 20px;
+}
+
+.genre-filter__option {
+  padding: 6px 0;
+  font: inherit;
+  color: var(--text-dim);
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+.genre-filter__option[aria-pressed='true'] {
+  color: var(--text);
+  text-decoration: underline;
+}
+
+.genre-filter__count {
+  font-size: 0.75rem;
+}

@@ -64,3 +64,23 @@ test('when the network is offline, there is an error and "נסו שוב" loads a
   await user.click(screen.getByRole('button', { name: 'נסו שוב' }))
   expect(await screen.findByRole('link', { name: /Person of Interest/ })).toBeInTheDocument()
 })
+
+test('the genre and the search come from the address, so a shared link opens the same filtered wall', async () => {
+  renderAt('/?genre=Comedy&q=new')
+
+  const wall = await screen.findByRole('region', { name: 'כל הסדרות' })
+  const items = within(wall).getAllByRole('listitem')
+  expect(items).toHaveLength(1)
+  expect(items[0]).toHaveTextContent('New Girl')
+  expect(screen.getByRole('searchbox', { name: 'חיפוש סדרה לפי שם' })).toHaveValue('new')
+  expect(screen.getByRole('button', { name: /קומדיה/ })).toHaveAttribute('aria-pressed', 'true')
+})
+
+test('a search with no results explains why, and "הצגת כל הסדרות" brings the wall back', async () => {
+  const user = userEvent.setup()
+  renderAt('/?q=friends')
+
+  expect(await screen.findByText(/לא מצאנו סדרה עם "friends" בשם/)).toBeInTheDocument()
+  await user.click(screen.getByRole('button', { name: 'הצגת כל הסדרות' }))
+  expect(within(screen.getByRole('region', { name: 'כל הסדרות' })).getAllByRole('listitem')).toHaveLength(6)
+})
