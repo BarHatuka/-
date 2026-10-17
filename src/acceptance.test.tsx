@@ -38,7 +38,7 @@ function refresh(unmount: () => void, path: string) {
 const wallItems = async () => within(await screen.findByRole('region', { name: 'כל הסדרות' })).getAllByRole('listitem')
 const address = () => screen.getByRole('status', { name: 'הכתובת' })
 
-test('כשאני פותח את האפליקציה, אני רואה "טוענים את הסדרות…" ואחר כך קיר פוסטרים, מהמדורגת ביותר ומטה. כשאין רשת, אני רואה הודעת שגיאה וכפתור "נסו שוב", ולא מסך לבן.', async () => {
+test('When I open the app, I see "טוענים את הסדרות…" and then a wall of posters, highest rated first; when the network is offline, I see an error message and a "נסו שוב" button, not a blank screen', async () => {
   const { unmount } = renderAt('/')
 
   expect(screen.getByText('טוענים את הסדרות…')).toBeInTheDocument()
@@ -54,7 +54,7 @@ test('כשאני פותח את האפליקציה, אני רואה "טוענים
   expect(await wallItems()).toHaveLength(6)
 })
 
-test('כשאני לוחץ על Person of Interest, אני רואה את הכתובת /shows/2, את הדירוג 8.8, את השורה "שודרה בין 2011 ל-2016 ב-CBS" ואת השחקנים. אחרי רענון של העמוד אני רואה את אותו דבר.', async () => {
+test('When I click "Person of Interest", I see the address /shows/2, its rating 8.8, the line "שודרה בין 2011 ל-2016 ב-CBS" and its cast — and I see the same after refreshing the page', async () => {
   const user = userEvent.setup()
   const { unmount } = renderAt('/')
 
@@ -73,7 +73,7 @@ test('כשאני לוחץ על Person of Interest, אני רואה את הכתו
   await expectShowPage()
 })
 
-test('כשאני בוחר בז\'אנר "קומדיה" ומקליד new בחיפוש, אני רואה רק קומדיות עם new בשם, כמו New Girl, והכתובת מסתיימת ב-?genre=Comedy&q=new.', async () => {
+test('When I pick the "קומדיה" genre and type "new" in the search box, I see only comedies with "new" in their name, like New Girl, and the address ends with ?genre=Comedy&q=new', async () => {
   const user = userEvent.setup()
   renderAt('/')
   await wallItems()
@@ -87,7 +87,7 @@ test('כשאני בוחר בז\'אנר "קומדיה" ומקליד new בחיפ�
   expect(address().textContent).toMatch(/\?genre=Comedy&q=new$/)
 })
 
-test('כשאני שומר סדרה ומרענן את הדף, אני רואה אותה בעמוד "הרשימה שלי".', async () => {
+test('When I save a show and refresh the page, I see it in "הרשימה שלי"', async () => {
   const user = userEvent.setup()
   const { unmount } = renderAt('/shows/2')
 
@@ -100,7 +100,7 @@ test('כשאני שומר סדרה ומרענן את הדף, אני רואה א�
   expect(screen.getByRole('link', { name: /Person of Interest/ })).toHaveAttribute('href', '/shows/2')
 })
 
-test('כשאני פותח את "היום בטלוויזיה", אני רואה את השידורים של היום לפי השעה, ולחיצה על סדרה פותחת את העמוד שלה.', async () => {
+test('When I open "היום בטלוויזיה", I see today\'s shows by hour, and clicking a show opens its page', async () => {
   const user = userEvent.setup()
   renderAt('/')
 
