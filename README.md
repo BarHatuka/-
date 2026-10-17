@@ -1,32 +1,83 @@
-# React + TypeScript + Vite
+# פרמיירה
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+מדריך בעברית לסדרות טלוויזיה. יש בו קיר פוסטרים מהמדורגת ביותר ומטה, עמוד לכל סדרה עם השחקנים ומועד השידור, רשימה אישית של סדרות לראות, ולוח השידורים של היום.
+כל המידע מגיע מ-[TVmaze](https://www.tvmaze.com/api), בלי שרת משלנו ובלי מפתח.
 
-Currently, two official plugins are available:
+פרויקט גמר בקורס פיתוח ויישום פרונט-אנד (2883), מכללת אונו.
+נבנה ב-React, ‏TypeScript, ‏Vite ו-React Router, עם בדיקות ב-Vitest.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## מה יש באפליקציה
 
-## React Compiler
+| כתובת | עמוד | מה עושים בו |
+|---|---|---|
+| `/` | כל הסדרות | קיר פוסטרים מהדירוג הגבוה לנמוך. חיפוש לפי שם וסינון לפי ז'אנר, ששניהם נשמרים בכתובת, למשל `/?genre=Comedy&q=new`. |
+| `/shows/:id` | עמוד סדרה, למשל `/shows/2` | פוסטר, דירוג, איפה ומתי שודרה, ז'אנרים, אורך פרק, שפה, תקציר, שחקנים, ושמירה לרשימה. |
+| `/my-list` | הרשימה שלי | הסדרות ששמרתי. נשארות גם אחרי רענון. |
+| `/today` | היום בטלוויזיה | לוח השידורים של היום בארה"ב, לפי שעה. |
+| כל כתובת אחרת | לא נמצא | "העמוד הזה לא בתוכנית", וקישור חזרה. |
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## הרצה
 
-## Expanding the Oxlint configuration
+צריך Node בגרסה 22.22 ומעלה (React Router 8 דורש אותה). בודקים עם `node -v`.
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+```bash
+npm install
+npm run dev
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+ואז פותחים את הכתובת שמופיעה בטרמינל, בדרך כלל http://localhost:5173.
+
+| פקודה | מה היא עושה |
+|---|---|
+| `npm run dev` | שרת פיתוח, עם רענון אוטומטי בכל שמירה |
+| `npm test` | כל הבדיקות, פעם אחת |
+| `npm run test:watch` | הבדיקות רצות מחדש בכל שינוי |
+| `npm run lint` | בדיקת קוד עם Oxlint |
+| `npm run build` | בדיקת TypeScript ובנייה לתיקייה `dist` |
+
+## מאיפה המידע
+
+שלוש כתובות של TVmaze, כולן ב-`src/api/tvmaze.ts`:
+
+- `https://api.tvmaze.com/shows` — הקיר. עמוד 0 של הקטלוג, בערך 240 סדרות. החיפוש עובר רק עליהן, ולא על כל הקטלוג (כתוב ב-"Not now" ב-`PRD.md`), והאפליקציה אומרת את זה כשחיפוש לא מוצא כלום.
+- `https://api.tvmaze.com/shows/:id?embed=cast` — עמוד סדרה, יחד עם השחקנים.
+- `https://api.tvmaze.com/schedule?country=US` — לוח השידורים של היום. השעות הן לפי שעון הרשת בארה"ב.
+
+"הרשימה שלי" נשמרת בדפדפן, ב-`localStorage`, תחת המפתח `premiere:my-list`.
+
+המידע והתמונות © TVmaze, ברישיון [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
+
+## איך הקוד בנוי
+
+```
+src/
+  main.tsx              BrowserRouter סביב האפליקציה
+  App.tsx               מפת הכתובות: איזה עמוד לכל כתובת
+  api/tvmaze.ts         הכתובות של TVmaze ו-fetchJson
+  hooks/useFetch.ts     טעינה, שגיאה ו"נסו שוב" — לכל העמודים
+  hooks/useMyList.ts    ה-Context של "הרשימה שלי"
+  pages/                עמוד אחד לכל כתובת
+  components/           רכיבים, כל אחד עם קובץ CSS משלו
+  utils/                פונקציות בלי React (סינון, ניסוח טקסט), כל אחת עם בדיקות
+  types/tvmaze.ts       הטיפוסים של המידע מ-TVmaze
+  test/                 הגדרות הבדיקות ונתוני בדיקה
+```
+
+ארבע החלטות שכדאי להכיר:
+
+1. **הכתובת היא מקור האמת.** עמוד סדרה קורא את המזהה מהכתובת (`useParams`) וטוען את הסדרה בעצמו, ולכן הוא עובד גם בכניסה ישירה ואחרי רענון. גם החיפוש והז'אנר יושבים בכתובת (`useSearchParams`) ולא ב-`useState`: "אחורה" מעמוד של סדרה מחזיר לאותו קיר מסונן, ואפשר לשלוח קישור.
+2. **hook אחד לכל הטעינות.** `useFetch<T>(url)` מחזיר מצב אחד מתוך שלושה, טעינה, שגיאה או מוכן, ו-TypeScript מכריח לבדוק את המצב לפני שנוגעים במידע. תשובה שכבר הגיעה נשמרת בזיכרון לפי הכתובת, ולכן החזרה לקיר מיידית, והדפדפן מחזיר את מקום הגלילה.
+3. **"הרשימה שלי" ב-Context.** כמה רכיבים צריכים אותה בבת אחת: המספר בכותרת, הלב על הפוסטר, כפתור השמירה ועמוד הרשימה. `MyListProvider` מחזיק אותה במקום אחד, וכל רכיב קורא אותה עם `useMyList()`.
+4. **מה שאפשר לחשב — לא נשמר ב-state.** הרשימה המסוננת, ספירת הז'אנרים והקיבוץ לפי שעה מחושבים מחדש בכל רינדור, מתוך המידע ומהכתובת.
+
+## בדיקות
+
+`npm test` מריץ את כל הבדיקות בלי רשת: `fetch` מוחלף בתשובות קבועות מ-`src/test/shows.ts`.
+
+- `src/acceptance.test.tsx` — בדיקה אחת לכל שורת קבלה ב-`PRD.md`, באותו נוסח.
+- `src/App.test.tsx` — עוד התנהגויות: עמוד "לא נמצא", קישור משותף עם סינון, "חזרה" לקיר המסונן, הסרה מהרשימה.
+- `src/utils/*.test.ts` — כל פונקציות העזר.
+
+## איך העבודה נעשתה
+
+הפרויקט נבנה מתבנית הקורס, משימה אחרי משימה לפי `tasks.md`, עם commit לכל משימה. מה שתוכנן נמצא ב-`PRD.md`. כל הודעה שנשלחה לסוכן הקידוד נרשמה ב-`PROMPTS.md`, והכללים שהסוכן עבד לפיהם כתובים ב-`AGENTS.md`.
